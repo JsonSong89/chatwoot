@@ -6,8 +6,9 @@
 1. 不修改架构,构建方式,技术栈,组件,依赖库
 2. 只能修改 app/javascript/widget 目录的代码,其他地方的代码只能阅读,不可修改
 3. 只能修改交互,样式,添加新的逻辑,绝对禁止修改message对接格式,api调用格式等,可以新增字段,但不可以修改删减老字段,造成兼容性问题
-4. 你的所有修改task,记录在 app/javascript/widget/widget修改点.md , 方便随时和官方原版进行比对,t修改点只需要简单的task name和修改点description即可
-5. 编码风格尽量遵循chatwoot官方原风格
+4. 功能扩展点,一般围绕 "content_attributes": {  "my_ext_test_attr": "这是测试属性"  } 进行,不修改message的核心字段,只在content_attributes里添加新的字段 
+5. 你的所有修改task,记录在 app/javascript/widget/widget修改点.md , 方便随时和官方原版进行比对,修改点只需要简单的task name和修改点description即可
+6. 编码风格尽量遵循chatwoot官方原风格
 
 
 ### 回复风格约定
