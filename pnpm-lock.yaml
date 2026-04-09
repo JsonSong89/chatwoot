@@ -250,6 +250,9 @@ importers:
       wavesurfer.js:
         specifier: 7.8.6
         version: 7.8.6
+      widget:
+        specifier: ^0.0.2
+        version: 0.0.2
     devDependencies:
       '@egoist/tailwindcss-icons':
         specifier: ^1.9.2
@@ -1729,6 +1732,9 @@ packages:
     resolution: {integrity: sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==}
     engines: {node: '>= 0.6.0'}
 
+  bean@1.0.15:
+    resolution: {integrity: sha512-/X7mF8caOC3qZYSJu62wEJ7AO5/ZIKwwvjBFded5s8IDdRLJSAXfYLJaNPIa/ALThJIWtqtJbbfGbGOjISX1bw==}
+
   bidi-js@1.0.3:
     resolution: {integrity: sha512-RKshQI1R3YQ+n9YJz2QQ147P66ELpa1FQEg20Dk8oW9t2KgLbpDLLp9aGZ7y8WHSshDknG0bknqGw5/tyCs5tw==}
 
@@ -1741,6 +1747,9 @@ packages:
 
   birpc@2.8.0:
     resolution: {integrity: sha512-Bz2a4qD/5GRhiHSwj30c/8kC8QGj12nNDwz3D4ErQ4Xhy35dsSDvF+RA/tWpjyU0pdGtSDiEk6B5fBGE1qNVhw==}
+
+  bonzo@2.0.0:
+    resolution: {integrity: sha512-RQG5bX6VhxP6H8hOcU5LNk9FmfKwppbxVj8J1cVSZcHYyKaxyC+tV5VUhRYzpgsw5AsYmlsQpBLIGu6DPXPngA==}
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -4748,6 +4757,9 @@ packages:
     resolution: {integrity: sha512-c9bZp7b5YtRj2wOe6dlj32MK+Bx/M/d+9VB2SHM1OtsUHR0aV0tdP6DWh/iMt0kWi1t5g1Iudu6hQRNd1A4PVA==}
     engines: {node: '>=18'}
 
+  widget@0.0.2:
+    resolution: {integrity: sha512-FapCmbjwwhTKNAsKqU1MPzHo5+2ajxWENWkextyZYNs/FFCPwGborP+1IFQrMDTgj7x6QSVTyhSfIlC87YeGDw==}
+
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
     engines: {node: '>=8'}
@@ -6369,6 +6381,8 @@ snapshots:
 
   base64-arraybuffer@1.0.2: {}
 
+  bean@1.0.15: {}
+
   bidi-js@1.0.3:
     dependencies:
       require-from-string: 2.0.2
@@ -6378,6 +6392,8 @@ snapshots:
   birpc@0.1.1: {}
 
   birpc@2.8.0: {}
+
+  bonzo@2.0.0: {}
 
   boolbase@1.0.0: {}
 
@@ -9762,6 +9778,11 @@ snapshots:
   widest-line@5.0.0:
     dependencies:
       string-width: 7.2.0
+
+  widget@0.0.2:
+    dependencies:
+      bean: 1.0.15
+      bonzo: 2.0.0
 
   wrap-ansi@6.2.0:
     dependencies:

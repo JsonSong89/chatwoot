@@ -153,14 +153,13 @@ export const actions = {
         message => conversations?.[message.id] === undefined
       );
       if (!missingMessages.length) return;
+      const next = { ...conversations };
       missingMessages.forEach(message => {
-        conversations[message.id] = message;
+        next[message.id] = message;
       });
       // Sort conversation messages by created_at
       const updatedConversation = Object.fromEntries(
-        Object.entries(conversations).sort(
-          (a, b) => a[1].created_at - b[1].created_at
-        )
+        Object.entries(next).sort((a, b) => a[1].created_at - b[1].created_at)
       );
       commit('conversation/setMetaUserLastSeenAt', lastSeen, { root: true });
       commit('setMissingMessagesInConversation', updatedConversation);

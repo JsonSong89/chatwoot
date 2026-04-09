@@ -474,7 +474,7 @@ describe('#actions', () => {
     it('abort syncing if there is no missing messages ', async () => {
       const state = {
         uiFlags: { allMessagesLoaded: false },
-        conversation: {
+        conversations: {
           454: {
             id: 454,
             content: 'hi',

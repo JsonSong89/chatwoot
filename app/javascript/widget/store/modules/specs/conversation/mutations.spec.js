@@ -1,4 +1,4 @@
-import { mutations } from '../../conversation/mutations';
+import { mutations, normalizeBotInfo } from '../../conversation/mutations';
 
 const temporaryMessagePayload = {
   content: 'hello',
@@ -28,6 +28,47 @@ describe('#mutations', () => {
       mutations.pushMessageToConversation(state, outgoingMessagePayload);
       expect(state.conversations).toEqual({
         1: outgoingMessagePayload,
+      });
+    });
+
+    it('merges my_ext_bot_info into sender for outgoing messages', () => {
+      const state = { conversations: {} };
+      const payload = {
+        ...outgoingMessagePayload,
+        content_attributes: {
+          my_ext_bot_info: {
+            name: '售前客服',
+            avatar: 'https://example.com/a.png',
+          },
+        },
+        sender: { id: 1, name: 'Agent', avatar_url: '/old.png' },
+      };
+      mutations.pushMessageToConversation(state, payload);
+      expect(state.conversations[1]).toMatchObject({
+        sender: expect.objectContaining({
+          name: '售前客服',
+          available_name: '售前客服',
+          avatar_url: 'https://example.com/a.png',
+        }),
+      });
+    });
+
+    it('parses my_ext_bot_info JSON string for outgoing messages', () => {
+      const state = { conversations: {} };
+      const payload = {
+        ...outgoingMessagePayload,
+        content_attributes: {
+          my_ext_bot_info: JSON.stringify({
+            name: '物流专员',
+            avatar: 'https://example.com/b.png',
+          }),
+        },
+      };
+      mutations.pushMessageToConversation(state, payload);
+      expect(state.conversations[1].sender).toMatchObject({
+        name: '物流专员',
+        available_name: '物流专员',
+        avatar_url: 'https://example.com/b.png',
       });
     });
 
@@ -248,6 +289,28 @@ describe('#mutations', () => {
       const state = { conversations: { 1: { id: 1 } } };
       mutations.deleteMessage(state, 1);
       expect(state.conversations).toEqual({});
+    });
+  });
+
+  describe('#setMissingMessagesInConversation', () => {
+    it('replaces conversations with normalized sorted payload', () => {
+      const state = {
+        conversations: { 99: { id: 99, message_type: 1 } },
+      };
+      const payload = {
+        1: {
+          id: 1,
+          message_type: 1,
+          content_attributes: {
+            my_ext_bot_info: { name: 'Bot A', avatar: 'https://x/a.png' },
+          },
+          created_at: 100,
+        },
+      };
+      mutations.setMissingMessagesInConversation(state, payload);
+      expect(state.conversations).toEqual({
+        1: normalizeBotInfo(payload[1]),
+      });
     });
   });
 

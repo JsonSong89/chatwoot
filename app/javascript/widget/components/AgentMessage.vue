@@ -68,11 +68,6 @@ export default {
       return type;
     },
     agentName() {
-      const botInfo = this.messageContentAttributes?.my_ext_bot_info;
-      if (botInfo?.name) {
-        return botInfo.name;
-      }
-
       if (this.message.sender) {
         return this.message.sender.available_name || this.message.sender.name;
       }
@@ -88,11 +83,6 @@ export default {
       return this.$t('UNREAD_VIEW.BOT');
     },
     avatarUrl() {
-      const botInfo = this.messageContentAttributes?.my_ext_bot_info;
-      if (botInfo?.avatar) {
-        return botInfo.avatar;
-      }
-
       const displayImage = this.useInboxAvatarForBot
         ? this.inboxAvatarUrl
         : '/assets/images/chatwoot_bot.png';
